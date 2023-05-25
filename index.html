@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Team 12's Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #000000;
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        text-align: center;
+        color: #ffffff;
+        background: rgb(182,34,195);
+        background: linear-gradient(0deg, rgba(182,34,195,1) 0%, rgb(82, 200, 247) 100%);
+        padding: 20px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .card {
+        background-color: #efe0ee;
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      #preview {
+        max-width: 100%;
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      #preview img {
+        max-width: 224px;
+        max-height: 224px;
+        border-radius: 10px;
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+
+      .custom-button {
+        display: inline-block;
+        background-color: #2193af;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .custom-button:hover {
+        background-color: #182848;
+      }
+
+      #diagnosis-button {
+        display: none;
+        margin-top: 20px;
+        text-align: center;
+      }
+      .result-box {
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+refresh-container {
+        display: none;
+        margin-top: 30pxpx;
+        text-align: center;
+      }
+
+      .refresh-button {
+        background-color: #67e08d;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-left: 10px;
+      }
+
+      .refresh-button i {
+        margin-right: 5px;
+      }
+      body {
+  background: #555;
+}
+
+
+
+
+
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
+
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 10px 30px; /* Adjust the padding as desired */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer p {
+  font-size: 14px; /* Adjust the font size as desired */
+  color:rgb(243, 229, 229);
+}
+
+
+
+.social-icon,
+.menu {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.social-icon__item,
+.menu__item {
+  list-style: none;
+  color:#000000;
+}
+
+.social-icon__link {
+  font-size: 2rem;
+  color:rgb(10, 0, 0);
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+}
+.social-icon__link:hover {
+  transform: translateY(-10px);
+}
+
+.menu__link {
+  font-size: 1.2rem;
+  color: #080606;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+  text-decoration: none;
+  opacity: 0.75;
+  font-weight: 300;
+}
+
+.menu__link:hover {
+  opacity: 1;
+}
+.wave {
+  position: absolute;
+  top: -80px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url("https://blog.stackfindover.com/wp-content/uploads/2020/11/wave-bot.png");
+  background-size: 1000px 100px;
+}
+.footer p {
+  color: #140303;
+  margin: 15px 0 10px 0;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+
+.wave#wave1 {
+  z-index: 1000;
+  opacity: 0.7;
+  bottom: 0;
+  animation: animateWaves 4s linear infinite;
+}
+
+.wave#wave2 {
+  z-index: 999;
+  opacity: 0.4;
+  bottom: 10px;
+  animation: animate 4s linear infinite !important;
+}
+
+.wave#wave3 {
+  z-index: 1000;
+  opacity: 1.0;
+  bottom: 15px;
+  animation: animateWaves 3s linear infinite;
+}
+
+.wave#wave4 {
+  z-index: 999;
+  opacity: 0.7;
+  bottom: 20px;
+  animation: animate 3s linear infinite;
+}
+
+@keyframes animateWaves {
+  0% {
+    background-position-x: 1000px;
+  }
+  100% {
+    background-positon-x: 0px;
+  }
+}
+
+@keyframes animate {
+  0% {
+    background-position-x: -1000px;
+  }
+  100% {
+    background-positon-x: 0px;
+  }
+}
+
+
+    </style>
+    <script>
+      function handleFileSelect(event) {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function (e) {
+    const img = document.createElement("img");
+    img.src = e.target.result;
+    img.style.maxWidth = "100%";
+    document.getElementById("preview").innerHTML = "";
+    document.getElementById("preview").appendChild(img);
+
+    // Display the "Get your diagnosis" button
+    document.getElementById("diagnosis-button").style.display = "block";
+    // Add event listener to the diagnosis button
+    document.getElementById("diagnosis-button").addEventListener("click", function () {
+      sendImageForDiagnosis(file, img); // Pass the image element
+    });
+  };
+
+  reader.readAsDataURL(file);
+}
+
+function sendImageForDiagnosis(file, img) {
+  const formData = new FormData();
+  formData.append("imageFile", file);
+  fetch("/", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // Handle the response from the Flask function
+      console.log(data.class);
+      // Set the URL as the src attribute of the iframe
+      const iframe = document.createElement("iframe");
+      iframe.src = data.class; // Assuming data.class contains the URL
+      iframe.width = "300";
+      iframe.height = "380";
+      iframe.frameBorder = "0";
+      iframe.allowtransparency = "true";
+      iframe.allow = "encrypted-media";
+      iframe.style.display = "block";
+      iframe.style.margin = "0 auto";
+      const textElement = document.createElement("p");
+      textElement.textContent = data.mood;
+      textElement.style.textAlign = "center";
+
+      // Create a container element to hold the text and iframe
+      const container = document.getElementById("iframeContainer"); // Replace "iframeContainer" with the ID of the container element
+      container.appendChild(textElement);
+      container.appendChild(iframe);
+
+      
+      
+      document.getElementById("preview").innerHTML = "";
+      document.getElementById("preview").appendChild(img);
+      // Add the refresh button to the page
+      const refreshButton = document.createElement("button");
+      refreshButton.id = "refresh-button";
+      refreshButton.innerHTML = '<i class="fas fa-sync"></i>';
+      const refreshContainer = document.createElement("div");
+      refreshContainer.id = "refresh-container";
+      refreshContainer.appendChild(refreshButton);
+      previewElement.appendChild(refreshContainer);
+      // Add event listener to the refresh button
+      refreshButton.addEventListener("click", function () {
+        location.reload();
+      });
+
+      
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+function refreshPage() {
+        location.reload();
+      }
+      /*!
+ * Emoji Cursor.js
+ * - 90's cursors collection
+ * -- https://github.com/tholman/90s-cursor-effects
+ * -- https://codepen.io/tholman/full/rxJpdQ
+ */
+
+
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  </head>
+  <body style="background-image: url('https://wallpaperaccess.com/full/3204572.jpg');background-size: cover;">
+    <h1>
+      
+      Mood Based Music Recommendation
+      
+    </h1>
+    
+    <div class="card">
+      <p>What's you mood?</p>
+      <label for="file-input" class="custom-button">Choose File</label>
+      <input id="file-input" type="file" accept=".jpg" onchange="handleFileSelect(event)">
+      <div id="preview"></div>
+      <div id="diagnosis-button">
+        <button class="custom-button" onclick="sendImageForDiagnosis()">Get Recommendation</button>
+        <br><br>
+        <div id="refresh-container">
+          <button id="refresh-button" class="refresh-button" onclick="refreshPage()">
+            <i class="fas fa-sync"></i>
+          </button>
+        </div>
+      </div>
+      <br><br>
+      <div id="iframeContainer">
+      </div>
+      <!-- Add the refresh button with an icon -->
+
+      
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br>
+    <footer class="footer">
+      <div class="waves">
+        <div class="wave" id="wave1"></div>
+        <div class="wave" id="wave2"></div>
+        <div class="wave" id="wave3"></div>
+        <!-- <div class="wave" id="wave4"></div> -->
+      </div>
+      
+      <ul class="menu">
+        <!-- <br><br><br><br> -->
+        <li class="menu__item"><a class="menu__link" href="#"></a></li>
+        <li class="menu__item"><a class="menu__link" href="#">Nawaz</a></li>
+        <li class="menu__item"><a class="menu__link" href="#">Sangeeth</a></li>
+        
+      </ul>
+      <ul class="social-icon">
+        <li class="social-icon__item"><a class="social-icon__link" href="https://www.linkedin.com/in/mohd-nawaz-96338820a/">
+            <ion-icon name="logo-linkedin"></ion-icon>
+          </a></li>
+          <li class="social-icon__item"><a class="social-icon__link" href="https://www.linkedin.com/in/sangeeth-pogula-130355237/">
+            <ion-icon name="logo-linkedin"></ion-icon>
+          </a></li>
+      </ul>
+      <p>&copy;All Rights Reserved to Nawaz and Sangeeth</p>
+    </footer>
+  </body>
+</html>
